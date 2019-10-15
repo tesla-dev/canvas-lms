@@ -39,7 +39,7 @@ export const UserGroups = {
   })
 }
 
-export const DefaultMocks = {
+export const UserGroupsDefaultMocks = {
   User: () => ({
     groups: [
       {

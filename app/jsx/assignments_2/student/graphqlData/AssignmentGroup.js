@@ -30,7 +30,7 @@ export const AssignmentGroup = {
   })
 }
 
-export const DefaultMocks = {
+export const AssignmentGroupDefaultMocks = {
   AssignmentGroup: () => ({
     name: 'Mocked Assignment Group'
   })

@@ -54,7 +54,7 @@ export const SubmissionComment = {
   })
 }
 
-export const DefaultMocks = {
+export const SubmissionCommentDefaultMocks = {
   SubmissionComment: () => {
     return {
       _id: 1,

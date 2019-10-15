@@ -45,7 +45,7 @@ export const Rubric = {
   })
 }
 
-export const DefaultMocks = {
+export const RubricDefaultMocks = {
   Rubric: () => ({
     id: '1',
     criteria: [{}],

@@ -103,7 +103,7 @@ export default function CoursesToolbar({
             <Grid.Col>
               <Grid colSpacing="small" rowSpacing="small" startAt="large">
                 <Grid.Row>
-                  <Grid.Col width={4}>
+                  <Grid.Col width={2}>
                     <CanvasSelect
                       id="termFilter"
                       label={<ScreenReaderContent>{I18n.t('Filter by term')}</ScreenReaderContent>}
@@ -134,7 +134,7 @@ export default function CoursesToolbar({
                       </CanvasSelect.Group>
                     </CanvasSelect>
                   </Grid.Col>
-                  <Grid.Col width={6}>
+                  <Grid.Col width={8}>
                     <TextInput
                       type="search"
                       label={<ScreenReaderContent>{searchLabel}</ScreenReaderContent>}

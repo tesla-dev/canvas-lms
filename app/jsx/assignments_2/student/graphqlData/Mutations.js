@@ -22,7 +22,7 @@ import {Submission} from './Submission'
 import {SubmissionComment} from './SubmissionComment'
 import {SubmissionDraft} from './SubmissionDraft'
 
-export const DefaultMocks = {
+export const MutationDefaultMocks = {
   CreateSubmissionCommentPayload: () => ({errors: null}),
   CreateSubmissionDraftPayload: () => ({errors: null}),
   CreateSubmissionPayload: () => ({errors: null}),

@@ -32,7 +32,7 @@ export const SubmissionCommentAuthor = {
   })
 }
 
-export const DefaultMocks = {
+export const UserDefaultMocks = {
   User: () => ({
     shortName: 'Bob Dobbs'
   })

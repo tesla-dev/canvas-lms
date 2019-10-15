@@ -63,9 +63,9 @@ gem 'brotli', '0.2.3', require: false
 gem 'canvas_connect', '0.3.11'
   gem 'adobe_connect', '1.0.8', require: false
 gem 'canvas_webex', '0.17'
-gem 'inst-jobs', '0.15.14'
-  gem 'fugit', '1.3.3', require: false
-    gem 'et-orbi', '1.2.2', require: false
+gem 'inst-jobs', '0.15.13'
+  gem 'rufus-scheduler', '3.4.2', require: false
+    gem 'et-orbi', '1.0.8', require: false
 gem 'switchman-inst-jobs', '1.3.5'
 gem 'inst-jobs-autoscaling', '1.0.5'
   gem 'aws-sdk-autoscaling', '1.28.0', require: false
@@ -74,19 +74,19 @@ gem 'hashery', '2.1.2', require: false
 gem 'highline', '2.0.2', require: false
 gem 'httparty', '0.17.1'
 gem 'i18n', '1.0.0'
-gem 'i18nliner', '0.1.1'
-  gem 'ruby2ruby', '2.4.4', require: false
-  gem 'ruby_parser', '3.14.0', require: false
+gem 'i18nliner', '0.1.0'
+  gem 'ruby2ruby', '2.4.1', require: false
+  gem 'ruby_parser', '3.11.0', require: false
 gem 'icalendar', '2.5.3', require: false
 gem 'ims-lti', '2.3.0', require: 'ims'
-gem 'json_schemer', '0.2.7'
+gem 'json_schemer', '0.1.7'
 gem 'simple_oauth', '0.3.1', require: false
 gem 'json', '2.2.0'
 gem 'link_header', '0.0.8'
 gem 'oj', '3.3.9'
 gem 'jwt', '1.5.6', require: false
 gem 'json-jwt', '1.9.4', require: false
-gem 'twilio-ruby', '5.27.1', require: false
+gem 'twilio-ruby', '5.7.2', require: false
 
 gem 'mail', '2.7.1', require: false
   gem 'mini_mime', '1.0.2', require: false
@@ -94,6 +94,7 @@ gem 'marginalia', '1.8.0', require: false
 gem 'mime-types', '3.3.0'
 gem 'mini_magick', '4.9.5'
 gem 'multi_json', '1.13.1'
+gem 'netaddr', '1.5.1', require: false
 gem 'nokogiri', '1.10.4', require: false
 gem 'oauth', '0.5.4', require: false
 gem 'parallel', '1.18.0', require: false
@@ -133,7 +134,7 @@ gem 'graphql-batch', '0.4.1'
 
 gem 'prawn-rails', '1.3.0'
 
-gem 'redcarpet', '3.5.0', require: false
+gem 'redcarpet', '3.4.0', require: false
 
 gem 'activesupport-suspend_callbacks', path: 'gems/activesupport-suspend_callbacks'
 gem 'acts_as_list', path: 'gems/acts_as_list'
@@ -178,3 +179,4 @@ gem 'twitter', path: 'gems/twitter'
 gem 'vericite_api', '1.5.3'
 gem 'utf8_cleaner', path: 'gems/utf8_cleaner'
 gem 'workflow', path: 'gems/workflow'
+gem 'canvas_shim', path: 'vendor/canvas_shim'

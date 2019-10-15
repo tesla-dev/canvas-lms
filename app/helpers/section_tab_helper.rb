@@ -251,9 +251,7 @@ module SectionTabHelper
     end
 
     def li_classes
-      [ 'section' ].tap do |a|
-        a << 'section-hidden' if @tab.hide? || @tab.unused?
-      end
+      ['section']
     end
 
     def indicate_hidden

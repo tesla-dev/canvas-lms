@@ -102,7 +102,7 @@ export const AssignmentSubmissionsConnection = {
   })
 }
 
-export const DefaultMocks = {
+export const AssignmentDefaultMocks = {
   Assignment: () => ({
     _id: '1',
     allowedAttempts: null,

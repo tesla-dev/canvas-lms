@@ -55,9 +55,7 @@ describe 'Gradebook performance' do
       students = @students.first(student_assignments[i][0])
       create_enrollments(@courses[i], students, allow_multiple_enrollments: true)
 
-      group = AssignmentGroup.suspend_callbacks(:update_student_grades) do
-        @courses[i].assignment_groups.create! name: 'assignments'
-      end
+      group = @courses[i].assignment_groups.create! name: 'assignments'
       assignments = create_assignments(
         [@courses[i].id],
         student_assignments[i][1],

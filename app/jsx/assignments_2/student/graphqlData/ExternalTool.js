@@ -34,7 +34,7 @@ export const ExternalTool = {
   })
 }
 
-export const DefaultMocks = {
+export const ExternalToolDefaultMocks = {
   ExternalTool: () => ({
     _id: '1',
     name: 'external tool'

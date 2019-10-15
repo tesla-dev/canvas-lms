@@ -32,7 +32,7 @@ export const Error = {
   })
 }
 
-export const DefaultMocks = {
+export const ErrorDefaultMocks = {
   ValidationError: () => ({
     attribute: null,
     message: ''

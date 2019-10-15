@@ -16,6 +16,17 @@
 # with this program. If not, see <http://www.gnu.org/licenses/>.
 
 group :development do
+# BEGIN ANSIBLE MANAGED BLOCK 
+# StrongMind Added
+group :development, :test do
+ gem 'pry-rails'
+ gem 'pry-byebug'
+ gem 'better_errors'
+ gem 'binding_of_caller'
+ gem 'dotenv-rails'
+ gem 'thin'
+end
+# END ANSIBLE MANAGED BLOCK 
   gem 'letter_opener', '1.7.0'
   gem 'spring', '2.1.0'
   gem 'spring-commands-rspec', '1.0.4'

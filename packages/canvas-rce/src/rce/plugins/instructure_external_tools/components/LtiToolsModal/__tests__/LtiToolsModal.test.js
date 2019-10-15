@@ -64,7 +64,7 @@ describe('RCE Plugins > LtiToolModal', () => {
 
   it('is labeled "Select App"', () => {
     const {getByLabelText} = renderComponent()
-    expect(getByLabelText('Apps')).toBeInTheDocument()
+    expect(getByLabelText('LTI Tools')).toBeInTheDocument()
   })
 
   it('has heading "Select App"', () => {

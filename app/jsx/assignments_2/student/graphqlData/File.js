@@ -81,7 +81,7 @@ export const SubmissionCommentFile = {
   })
 }
 
-export const DefaultMocks = {
+export const FileDefaultMocks = {
   File: () => ({
     mimeClass: 'image'
   })

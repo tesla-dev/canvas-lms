@@ -15,121 +15,94 @@
  * You should have received a copy of the GNU Affero General Public License along
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-import {addMockFunctionsToSchema, makeExecutableSchema} from 'graphql-tools'
 import {addTypenameToDocument} from 'apollo-utilities'
-import glob from 'glob'
 import gql from 'graphql-tag'
 import {graphql} from 'graphql'
+import {makeExecutableSchema, addMockFunctionsToSchema} from 'graphql-tools'
 import {print} from 'graphql/language/printer'
 import schemaString from '../../../../schema.graphql'
 
-import {Assignment} from './graphqlData/Assignment'
-import {Submission} from './graphqlData/Submission'
+import {Assignment, AssignmentDefaultMocks} from './graphqlData/Assignment'
+import {AssignmentGroupDefaultMocks} from './graphqlData/AssignmentGroup'
+import {ErrorDefaultMocks} from './graphqlData/Error'
+import {ExternalToolDefaultMocks} from './graphqlData/ExternalTool'
+import {FileDefaultMocks} from './graphqlData/File'
+import {LockInfoDefaultMocks} from './graphqlData/LockInfo'
+import {MediaObjectDefaultMocks} from './graphqlData/MediaObject'
+import {MediaSourceDefaultMocks} from './graphqlData/MediaSource'
+import {MediaTrackDefaultMocks} from './graphqlData/MediaTrack'
+import {ModuleDefaultMocks} from './graphqlData/Module'
+import {MutationDefaultMocks} from './graphqlData/Mutations'
+import {ProficiencyRatingDefaultMocks} from './graphqlData/ProficiencyRating'
+import {RubricAssessmentDefaultMocks} from './graphqlData/RubricAssessment'
+import {RubricAssessmentRatingDefaultMocks} from './graphqlData/RubricAssessmentRating'
+import {RubricAssociationDefaultMocks} from './graphqlData/RubricAssociation'
+import {RubricCriterionDefaultMocks} from './graphqlData/RubricCriterion'
+import {RubricDefaultMocks} from './graphqlData/Rubric'
+import {RubricRatingDefaultMocks} from './graphqlData/RubricRating'
+import {Submission, SubmissionDefaultMocks} from './graphqlData/Submission'
+import {SubmissionCommentDefaultMocks} from './graphqlData/SubmissionComment'
+import {SubmissionDraftDefaultMocks} from './graphqlData/SubmissionDraft'
+import {SubmissionHistoryDefaultMocks} from './graphqlData/SubmissionHistory'
+import {SubmissionInterfaceDefaultMocks} from './graphqlData/SubmissionInterface'
+import {UserDefaultMocks} from './graphqlData/User'
+import {UserGroupsDefaultMocks} from './graphqlData/UserGroups'
 
-let _dynamicDefaultMockImports = null
-async function loadDefaultMocks() {
-  if (_dynamicDefaultMockImports !== null) {
-    return _dynamicDefaultMockImports
-  }
-
-  const filesToImport = glob.sync('./graphqlData/**.js', {cwd: './app/jsx/assignments_2/student'})
-  const defaultMocks = await Promise.all(
-    filesToImport.map(async file => {
-      const fileImport = await import(file)
-      return fileImport.DefaultMocks || {}
-    })
-  )
-  _dynamicDefaultMockImports = defaultMocks.filter(m => m !== undefined)
-  return _dynamicDefaultMockImports
-}
-
-let _typeIntrospectionSet = null
-async function getValidTypes() {
-  if (_typeIntrospectionSet !== null) {
-    return _typeIntrospectionSet
-  }
-
-  const typeIntrospectionQuery = '{ __schema { types { name } } }'
-  const schema = makeExecutableSchema({
-    typeDefs: schemaString,
-    resolverValidationOptions: {
-      requireResolversForResolveType: false
-    }
-  })
-  const result = await graphql(schema, typeIntrospectionQuery)
-  _typeIntrospectionSet = new Set(result.data.__schema.types.map(type => type.name))
-  return _typeIntrospectionSet
-}
-
-async function makeDefaultMocks() {
-  const defaultMocks = await loadDefaultMocks()
-  return [
+function defaultMocks() {
+  return {
     // Custom scalar types defined in our graphql schema
-    {URL: () => 'http://graphql-mocked-url.com'},
-    {DateTime: () => null},
+    URL: () => 'http://graphql-mocked-url.com',
+    DateTime: () => null,
 
-    // DefaultMocks as defined in the ./graphqlData javascript files
-    ...defaultMocks
-  ]
+    // Custom mocks for type specific data we are querying
+    ...AssignmentDefaultMocks,
+    ...AssignmentGroupDefaultMocks,
+    ...ErrorDefaultMocks,
+    ...ExternalToolDefaultMocks,
+    ...FileDefaultMocks,
+    ...LockInfoDefaultMocks,
+    ...MediaObjectDefaultMocks,
+    ...MediaSourceDefaultMocks,
+    ...MediaTrackDefaultMocks,
+    ...ModuleDefaultMocks,
+    ...MutationDefaultMocks,
+    ...ProficiencyRatingDefaultMocks,
+    ...RubricAssessmentDefaultMocks,
+    ...RubricAssessmentRatingDefaultMocks,
+    ...RubricAssociationDefaultMocks,
+    ...RubricCriterionDefaultMocks,
+    ...RubricDefaultMocks,
+    ...RubricRatingDefaultMocks,
+    ...SubmissionDefaultMocks,
+    ...SubmissionCommentDefaultMocks,
+    ...SubmissionDraftDefaultMocks,
+    ...SubmissionHistoryDefaultMocks,
+    ...SubmissionInterfaceDefaultMocks,
+    ...UserDefaultMocks,
+    ...UserGroupsDefaultMocks
+  }
 }
 
-async function createMocks(overrides = []) {
-  const mocks = {}
+function createMocks(overrides = []) {
+  const mocks = defaultMocks()
   if (!Array.isArray(overrides)) {
     overrides = [overrides]
   }
 
-  const validTypes = await getValidTypes()
-  const defaultMocks = await makeDefaultMocks()
-  const allOverrides = [...defaultMocks, ...overrides]
-
-  allOverrides.forEach(overrideObj => {
+  overrides.forEach(overrideObj => {
     if (typeof overrideObj !== 'object') {
       throw new Error(`overrides must be an object, not ${typeof overrideObj}`)
     }
-
     Object.keys(overrideObj).forEach(key => {
-      // Sanity check. If someone tries to add an override that doesn't exist in
-      // the schema, we are going to fail hard here instead of having unexpected
-      // results returned from this function
-      if (!validTypes.has(key)) {
-        const err =
-          `The override "${key}" is not a valid graphql type. ` +
-          'Did you typo it or forget to update your graphql schema?'
-        throw new Error(err)
-      }
-
-      const defaultFunction = mocks[key] || (() => undefined)
+      const defaultFunction = mocks[key] || (() => {})
       const defaultValues = defaultFunction()
-      const overrideFunction =
-        typeof overrideObj[key] === 'function' ? overrideObj[key] : () => overrideObj[key]
+      const overrideFunction = overrideObj[key]
       const overrideValues = overrideFunction()
-
-      // This if statement handles scalar types. For example, saying that all URL
-      // types resolve to a dummy url, regardless of where they show up in the query
-      if (typeof overrideValues !== 'object' || overrideValues === null) {
-        mocks[key] = () => overrideValues
-      } else {
-        mocks[key] = () => ({...defaultValues, ...overrideValues})
-      }
+      mocks[key] = () => ({...defaultValues, ...overrideValues})
     })
   })
 
   return mocks
-}
-
-function nodeInterfaceProperlyMocked(queryAST, mocks) {
-  // flatMap
-  const selections = queryAST.definitions.reduce(
-    (acc, d) => acc.concat(d.selectionSet.selections),
-    []
-  )
-  const selectionNames = new Set(selections.map(s => s.name.value))
-  if (selectionNames.has('node') || selectionNames.has('legacyNode')) {
-    return !!mocks.Node?.()?.__typename
-  } else {
-    return true
-  }
 }
 
 /*
@@ -147,34 +120,21 @@ function nodeInterfaceProperlyMocked(queryAST, mocks) {
  *       }
  *       ```
  */
-export async function mockQuery(queryAST, overrides = [], variables = {}) {
-  const mocks = await createMocks(overrides)
-
-  // Catch common mistake of forgetting to override the __typename for node interface
-  if (!nodeInterfaceProperlyMocked(queryAST, mocks)) {
-    const err =
-      'You must add a __typename override to tell the node interface what type ' +
-      'you are expecting. For example: `{Node: {__typename: "Course"}}`'
-    throw new Error(err)
-  }
-
-  // Turn the AST query into a string that can be used to make a query against graphql.js
-  const queryStr = print(addTypenameToDocument(queryAST))
+export function mockQuery(query, overrides = [], variables = {}) {
+  // Turn the processed / normalized graphql-tag (gql) query back into a
+  // string that can be used to make a query using graphql.js. Using gql is
+  // super helpful for things like removing duplicate fragments, so we still
+  // want to use that when we are defining our queries.
+  const queryStr = print(addTypenameToDocument(query))
   const schema = makeExecutableSchema({
     typeDefs: schemaString,
     resolverValidationOptions: {
       requireResolversForResolveType: false
     }
   })
-
-  // Run our query againsted the mocked server
+  const mocks = createMocks(overrides)
   addMockFunctionsToSchema({schema, mocks})
-  const result = await graphql(schema, queryStr, null, null, variables)
-  if (result.errors) {
-    const errors = result.errors.map(e => e.message)
-    throw new Error('The graphql query contained errors:\n  - ' + errors.join('\n  - '))
-  }
-  return result
+  return graphql(schema, queryStr, null, null, variables) // Returns a promise
 }
 
 export async function mockAssignment(overrides = []) {

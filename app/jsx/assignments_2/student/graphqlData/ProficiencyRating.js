@@ -39,6 +39,6 @@ export const ProficiencyRating = {
   })
 }
 
-export const DefaultMocks = {
+export const ProficiencyRatingDefaultMocks = {
   ProficiencyRating: () => ({})
 }

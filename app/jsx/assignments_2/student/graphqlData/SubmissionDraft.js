@@ -44,7 +44,7 @@ export const SubmissionDraft = {
   })
 }
 
-export const DefaultMocks = {
+export const SubmissionDraftDefaultMocks = {
   SubmissionDraft: () => ({
     activeSubmissionType: null,
     attachments: () => [],

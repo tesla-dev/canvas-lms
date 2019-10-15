@@ -50,7 +50,7 @@ export const RubricAssessmentRating = {
   })
 }
 
-export const DefaultMocks = {
+export const RubricAssessmentRatingDefaultMocks = {
   RubricAssessmentRating: () => ({
     _id: '1',
     outcome: null,

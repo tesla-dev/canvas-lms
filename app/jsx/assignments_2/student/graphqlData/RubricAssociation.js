@@ -37,7 +37,7 @@ export const RubricAssociation = {
   })
 }
 
-export const DefaultMocks = {
+export const RubricAssociationDefaultMocks = {
   RubricAssociation: () => ({
     _id: '1',
     hidePoints: false,

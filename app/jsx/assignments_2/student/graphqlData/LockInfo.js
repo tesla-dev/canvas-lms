@@ -30,7 +30,7 @@ export const LockInfo = {
   })
 }
 
-export const DefaultMocks = {
+export const LockInfoDefaultMocks = {
   LockInfo: () => ({
     isLocked: false
   })
