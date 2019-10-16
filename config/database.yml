@@ -9,8 +9,6 @@ development:
   timeout: 5000
   prepared_statements: false
   pool: <%= ENV["DB_POOL"] || 5 %>
-  use_qualified_names: true
-  schema_search_path: "courseware,public"
 
 production:
   adapter: postgresql
@@ -23,8 +21,6 @@ production:
   timeout: 5000
   prepared_statements: false
   pool: <%= ENV["DB_POOL"] || 5 %>
-  use_qualified_names: true
-  schema_search_path: "courseware,public"
 
 courseware:
   adapter: postgresql
@@ -37,8 +33,6 @@ courseware:
   timeout: 5000
   prepared_statements: false
   pool: <%= ENV["DB_POOL"] || 5 %>
-  use_qualified_names: true
-  schema_search_path: "courseware,public"
 
 test:
   adapter: postgresql
@@ -52,5 +46,4 @@ test:
   timeout: 5000
   prepared_statements: false
   pool: <%= ENV["DB_POOL"] || 5 %>
-  use_qualified_names: true
-  schema_search_path: "courseware,public"
+
