@@ -181,3 +181,7 @@ gem 'twitter', path: 'gems/twitter'
 gem 'vericite_api', '1.5.3'
 gem 'utf8_cleaner', path: 'gems/utf8_cleaner'
 gem 'workflow', path: 'gems/workflow'
+
+# StrongMind Added
+gem 'canvas_shim', :path => 'vendor/canvas_shim'
+gem 'bootsnap', require: false
