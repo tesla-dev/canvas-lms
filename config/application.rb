@@ -30,12 +30,11 @@ require_relative '../lib/canvas_yaml'
 require "active_record/railtie"
 require "action_controller/railtie"
 require "action_mailer/railtie"
-require "sprockets/railtie"
+require "sprockets/railtie" # Do not enable the Rails Asset Pipeline
 require "rails/test_unit/railtie"
-# BEGIN ANSIBLE MANAGED BLOCK 
+
 require 'dotenv'
 Dotenv.load('.env.development')
-# END ANSIBLE MANAGED BLOCK 
 
 Bundler.require(*Rails.groups)
 

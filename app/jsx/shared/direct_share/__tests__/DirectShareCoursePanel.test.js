@@ -57,8 +57,9 @@ describe('DirectShareCoursePanel', () => {
     ).toBe('')
   })
 
-  it('enables the copy button when a course is selected', () => {
-    const {getByText} = render(<DirectShareCoursePanel />)
+  it('enables the copy button when a course is selected and calls onStart property', () => {
+    const handleStart = jest.fn()
+    const {getByText} = render(<DirectShareCoursePanel onStart={handleStart} />)
     fireEvent.click(getByText(/select a course/i))
     fireEvent.click(getByText('abc'))
     const copyButton = getByText(/copy/i).closest('button')

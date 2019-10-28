@@ -47,7 +47,7 @@ export function useFilterSettings() {
 }
 
 function fileLabelFromContext(contextType) {
-  switch (contextType) {
+  switch(contextType) {
     case 'user':
       return formatMessage('My Files')
     case 'course':
@@ -74,9 +74,7 @@ function buildContentOptions(userContextType) {
   ]
 
   if (userContextType === 'course') {
-    contentOptions.splice(
-      1,
-      0,
+    contentOptions.splice(1, 0,
       <option value="course_files" icon={IconFolderLine}>
         {fileLabelFromContext('course')}
       </option>
@@ -109,7 +107,9 @@ export default function Filter(props) {
         <Flex margin="small none none none">
           <Flex.Item grow shrink margin="none xx-small none none">
             <Select
-              label={<ScreenReaderContent>{formatMessage('Content Subtype')}</ScreenReaderContent>}
+              label={
+                <ScreenReaderContent>{formatMessage('Content Subtype')}</ScreenReaderContent>
+              }
               onChange={(e, selection) => {
                 onChange({contentSubtype: selection.value})
               }}

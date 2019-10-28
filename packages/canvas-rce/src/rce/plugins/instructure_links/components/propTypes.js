@@ -34,13 +34,8 @@ export const linksShape = shape({
 })
 
 export const linkType = oneOf([
-  'assignments',
-  'discussions',
-  'modules',
-  'quizzes',
-  'announcements',
-  'wikiPages',
-  'navigation'
+  'assignments', 'discussions', 'modules', 'quizzes',
+  'announcements', 'wikiPages', 'navigation'
 ])
 
 export const collectionsShape = shape({

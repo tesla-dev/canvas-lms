@@ -22,6 +22,7 @@ import {Text} from '@instructure/ui-elements'
 import {View} from '@instructure/ui-layout'
 import ExpandoText from './ExpandoText'
 
+
 export default function LtiTool(props) {
   const [focused, setFocused] = useState(false)
   const {title, image, description, onAction} = props
@@ -37,7 +38,7 @@ export default function LtiTool(props) {
         onClick={() => {
           onAction()
         }}
-        onKeyDown={e => {
+        onKeyDown={(e) => {
           if (e.keyCode === 13 || e.keyCode === 32) {
             onAction()
           }
@@ -46,9 +47,7 @@ export default function LtiTool(props) {
         onBlur={() => setFocused(false)}
         tabIndex="0"
       >
-        <span style={{marginRight: '.5rem'}}>
-          <img src={image} alt="" />
-        </span>
+        <span style={{marginRight: '.5rem'}}><img src={image} alt="" /></span>
         <Text weight="bold">{title}</Text>
       </View>
       {description && renderDescription(description)}
@@ -58,7 +57,7 @@ export default function LtiTool(props) {
   function renderDescription(desc) {
     return (
       <div style={{margin: '0 1.5rem', position: 'relative', boxSizing: 'content-box'}}>
-        <ExpandoText text={desc} />
+        <ExpandoText text={desc}/>
       </div>
     )
   }

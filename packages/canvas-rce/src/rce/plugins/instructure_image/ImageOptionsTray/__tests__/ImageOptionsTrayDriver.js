@@ -16,14 +16,7 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import {
-  fireEvent,
-  getByLabelText,
-  getByText,
-  getAllByText,
-  queryByLabelText,
-  wait
-} from '@testing-library/dom'
+import {fireEvent, getByLabelText, getByText, getAllByText, queryByLabelText, wait} from '@testing-library/dom'
 
 function getSizeOptions($sizeSelect) {
   const controlledId = $sizeSelect.getAttribute('aria-controls')

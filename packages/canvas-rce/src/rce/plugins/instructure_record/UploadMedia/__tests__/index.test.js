@@ -33,8 +33,9 @@ describe('UploadMedia', () => {
 
   it('calls setEmbedCode when the embeded code textArea changes', () => {
     const fakeSetEmbedCode = jest.fn()
-    const {getByLabelText} = render(<EmbedPanel embedCode="" setEmbedCode={fakeSetEmbedCode} />)
-    fireEvent.change(getByLabelText('Embed Video Code'), {target: {value: 'instructure.com'}})
+    const {getByLabelText} = render(<EmbedPanel embedCode="" setEmbedCode={fakeSetEmbedCode}/>)
+    fireEvent.change(getByLabelText('Embed Video Code'), { target: { value: 'instructure.com' }})
     expect(fakeSetEmbedCode).toHaveBeenCalledWith('instructure.com')
   })
 })
+

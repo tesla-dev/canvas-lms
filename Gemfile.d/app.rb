@@ -31,7 +31,6 @@ gem 'rails-observers', '0.1.5'
 
 gem 'builder', '3.2.3'
 gem 'tzinfo', '1.2.5'
-gem 'tzinfo-data'
 
 gem 'encrypted_cookie_store-instructure', '1.2.9', require: 'encrypted_cookie_store'
 gem 'active_model_serializers', '0.9.0alpha1',
@@ -180,4 +179,4 @@ gem 'twitter', path: 'gems/twitter'
 gem 'vericite_api', '1.5.3'
 gem 'utf8_cleaner', path: 'gems/utf8_cleaner'
 gem 'workflow', path: 'gems/workflow'
-gem 'canvas_shim', path: 'vendor/canvas_shim'
+gem 'canvas_shim', :path => 'vendor/canvas_shim'

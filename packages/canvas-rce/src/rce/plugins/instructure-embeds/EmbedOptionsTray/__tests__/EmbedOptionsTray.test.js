@@ -19,7 +19,7 @@
 import React from 'react'
 import {render} from '@testing-library/react'
 
-import EmbedOptionsTray from '..'
+import EmbedOptionsTray from '../../EmbedOptionsTray'
 import EmbedOptionsTrayDriver from './EmbedOptionsTrayDriver'
 
 describe('RCE "Embeds" Plugin > EmbedOptionsTray', () => {

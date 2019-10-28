@@ -42,8 +42,7 @@ export default function(ed, document) {
         label={formatMessage('Upload File')}
         panels={['COMPUTER']}
         onDismiss={handleDismiss}
-      />,
-      container
+      />, container
     )
   })
 }

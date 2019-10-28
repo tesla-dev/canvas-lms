@@ -211,9 +211,8 @@ const getSampleUnsplashResults = () => ({
   ]
 })
 
-describe.skip('UnsplashPanel', () => {
-  // TODO: get this to work in react 16.9
-  let liveRegion
+describe.skip('UnsplashPanel', () => { // TODO: get this to work in react 16.9
+  let liveRegion;
   beforeEach(() => {
     liveRegion = document.createElement('div')
     liveRegion.id = 'flash_screenreader_holder'
@@ -228,9 +227,7 @@ describe.skip('UnsplashPanel', () => {
     const fakeSource = {
       searchUnsplash: jest.fn().mockResolvedValue({})
     }
-    const {getByLabelText} = render(
-      <UnsplashPanel source={fakeSource} setUnsplashData={() => {}} />
-    )
+    const {getByLabelText} = render(<UnsplashPanel source={fakeSource} setUnsplashData={() => {}}/>)
     const selectBox = getByLabelText('Search Term')
     act(() => {
       userEvent.type(selectBox, 'kittens')
@@ -243,27 +240,22 @@ describe.skip('UnsplashPanel', () => {
     const fakeSource = {
       searchUnsplash: jest.fn().mockResolvedValue(getSampleUnsplashResults())
     }
-    const {getByLabelText, getByTestId} = render(
-      <UnsplashPanel source={fakeSource} setUnsplashData={() => {}} />
-    )
+    const {getByLabelText, getByTestId} = render(<UnsplashPanel source={fakeSource} setUnsplashData={() => {}}/>)
     const selectBox = getByLabelText('Search Term')
     act(() => {
       userEvent.type(selectBox, 'kittens')
     })
-    let resultsContainer
-    await wait(() => {
-      resultsContainer = getByTestId('UnsplashResultsContainer')
-    })
+    let resultsContainer;
+    await wait(() => {resultsContainer = getByTestId('UnsplashResultsContainer')})
     expect(resultsContainer.children).toHaveLength(12)
   })
 
-  it('shows pagination controls when there are more than one page of results', async () => {
+  it(
+    'shows pagination controls when there are more than one page of results', async () => {
     const fakeSource = {
       searchUnsplash: jest.fn().mockResolvedValue(getSampleUnsplashResults())
     }
-    const {getByLabelText, getAllByText} = render(
-      <UnsplashPanel source={fakeSource} setUnsplashData={() => {}} />
-    )
+    const {getByLabelText, getAllByText} = render(<UnsplashPanel source={fakeSource} setUnsplashData={() => {}}/>)
     const selectBox = getByLabelText('Search Term')
     act(() => {
       userEvent.type(selectBox, 'kittens')
@@ -271,7 +263,9 @@ describe.skip('UnsplashPanel', () => {
     let nextPage
     await wait(() => (nextPage = getAllByText('Next Page')[0]))
     expect(nextPage).toBeVisible()
-  })
+
+  }
+  )
 
   it('does not show pagination when there is only one page of results', async () => {
     const fakeResults = getSampleUnsplashResults()
@@ -279,9 +273,7 @@ describe.skip('UnsplashPanel', () => {
     const fakeSource = {
       searchUnsplash: jest.fn().mockResolvedValue(fakeResults)
     }
-    const {getByLabelText, queryByText} = render(
-      <UnsplashPanel source={fakeSource} setUnsplashData={() => {}} />
-    )
+    const {getByLabelText, queryByText} = render(<UnsplashPanel source={fakeSource} setUnsplashData={() => {}} />)
     const selectBox = getByLabelText('Search Term')
     act(() => {
       userEvent.type(selectBox, 'kittens')
@@ -298,24 +290,22 @@ describe.skip('UnsplashPanel', () => {
     }
     const fakeSetUnsplashData = jest.fn()
     const {getByLabelText, getByAltText} = render(
-      <UnsplashPanel source={fakeSource} setUnsplashData={fakeSetUnsplashData} />
+      <UnsplashPanel source={fakeSource} setUnsplashData={fakeSetUnsplashData}/>
     )
     const selectBox = getByLabelText('Search Term')
     act(() => {
       userEvent.click(selectBox)
       userEvent.type(selectBox, 'kittens')
     })
-    let image
-    await wait(
-      () => (image = getByAltText('selective focus photography brown cat lying over black cat'))
-    )
+    let image;
+    await wait(() => image = getByAltText('selective focus photography brown cat lying over black cat'))
     act(() => {
       userEvent.click(image)
     })
     expect(fakeSetUnsplashData).toHaveBeenCalledWith({
       url: fakeResults.results[0].urls.link,
       id: fakeResults.results[0].id,
-      alt: 'selective focus photography brown cat lying over black cat'
+      alt: "selective focus photography brown cat lying over black cat"
     })
   })
 
@@ -330,15 +320,15 @@ describe.skip('UnsplashPanel', () => {
     }
     const fakeSetUnsplashData = jest.fn()
     const {getByText, getByLabelText} = render(
-      <UnsplashPanel source={fakeSource} setUnsplashData={fakeSetUnsplashData} />
+      <UnsplashPanel source={fakeSource} setUnsplashData={fakeSetUnsplashData}/>
     )
     const selectBox = getByLabelText('Search Term')
     act(() => {
       userEvent.click(selectBox)
       userEvent.type(selectBox, 'kittens')
     })
-    let text
-    await wait(() => (text = getByText('No results found for kittens.')))
+    let text;
+    await wait(() => text = getByText('No results found for kittens.'))
 
     expect(text).toBeVisible()
   })
@@ -350,18 +340,14 @@ describe.skip('UnsplashPanel', () => {
     }
     const fakeSetUnsplashData = jest.fn()
     const {getAllByText, getByLabelText} = render(
-      <UnsplashPanel
-        liveRegion={() => document.getElementById('flash_screenreader_holder')}
-        source={fakeSource}
-        setUnsplashData={fakeSetUnsplashData}
-      />
+      <UnsplashPanel liveRegion={() => document.getElementById('flash_screenreader_holder')} source={fakeSource} setUnsplashData={fakeSetUnsplashData}/>
     )
     const selectBox = getByLabelText('Search Term')
     act(() => {
       userEvent.click(selectBox)
       userEvent.type(selectBox, 'kittens')
     })
-    await wait(() => getAllByText('Next Page')[0])
+    await wait(() => (getAllByText('Next Page')[0]))
     expect(liveRegion.textContent.trim()).toBe('2321 results found, 12 results currently displayed')
   })
 
@@ -379,14 +365,12 @@ describe.skip('UnsplashPanel', () => {
         userEvent.click(selectBox)
         userEvent.type(selectBox, 'kittens')
       })
-      let image
-      await wait(
-        () => (image = getByAltText('selective focus photography brown cat lying over black cat'))
-      )
+      let image;
+      await wait(() => image = getByAltText('selective focus photography brown cat lying over black cat'))
       act(() => {
         userEvent.click(image)
       })
-      expect(getByText('Raul Varzar')).toBeInTheDocument()
+      expect(getByText('Raul Varzar')).toBeInTheDocument();
     })
   })
 })

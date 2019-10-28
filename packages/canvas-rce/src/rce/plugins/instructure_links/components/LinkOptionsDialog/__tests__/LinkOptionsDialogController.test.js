@@ -83,6 +83,7 @@ describe('RCE "Links" Plugin > LinkOptionsDialog > LinkOptionsDialogController',
       dialogController.showDialogForEditor(editor, 'create')
       dialogController._applyLinkOptions({})
       expect(getDialog()).toBeNull()
+
     })
 
     it('inserts the link', () => {

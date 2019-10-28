@@ -23,9 +23,7 @@ module.exports = {
         coverage: process.env.BABEL_ENV === 'test-node',
         transformImports: false,
         node: ['test-node', 'test'].includes(process.env.BABEL_ENV) || process.env.JEST_WORKER_ID,
-        esModules: !(
-          ['test-node', 'test'].includes(process.env.BABEL_ENV) || process.env.JEST_WORKER_ID
-        )
+        esModules: !(['test-node', 'test'].includes(process.env.BABEL_ENV) || process.env.JEST_WORKER_ID)
       }
     ]
   ]

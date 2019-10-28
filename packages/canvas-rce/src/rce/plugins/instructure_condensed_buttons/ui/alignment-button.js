@@ -19,6 +19,7 @@
 import formatMessage from '../../../../format-message'
 
 export default function(editor) {
+
   const alignToolbarButtons = [
     {
       name: 'alignleft',
@@ -38,7 +39,7 @@ export default function(editor) {
       cmd: 'JustifyRight',
       icon: 'align-right'
     }
-  ]
+  ];
 
   const alignButtonLabel = formatMessage('Align')
 
@@ -70,16 +71,14 @@ export default function(editor) {
 
     select: value => {
       const button = alignToolbarButtons.find(b => b.cmd === value)
-      return editor.formatter.match(button.name)
+      return  editor.formatter.match(button.name)
     },
 
     onSetup: api => {
-      const $svgContainer = editor.$(
-        editor.editorContainer.querySelector(`[aria-label="${alignButtonLabel}"] .tox-icon`)
-      )
+      const $svgContainer = editor.$(editor.editorContainer.querySelector(`[aria-label="${alignButtonLabel}"] .tox-icon`))
       const allIcons = editor.ui.registry.getAll().icons
 
-      function nodeChangeHandler() {
+      function  nodeChangeHandler() {
         const activeAlignment = alignToolbarButtons.find(b => editor.formatter.match(b.name))
         const icon = activeAlignment ? activeAlignment.icon : 'align-left'
         const svg = allIcons[icon]
@@ -92,3 +91,4 @@ export default function(editor) {
     }
   })
 }
+

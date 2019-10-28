@@ -16,37 +16,35 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import {mount} from 'enzyme'
-import {notifier} from '../notifier'
-import {DynamicUiProvider} from '../provider'
+ import React from 'react';
+ import {notifier} from '../notifier';
+ import {DynamicUiProvider} from '../provider';
+ import {mount} from 'enzyme';
 
 class MockComponent extends React.Component {
-  render() {
-    return <div />
-  }
+  render () { return <div />; }
 }
 
 it('passes trigger property functions and forwards the calls to the dynamic ui manager', () => {
-  const Wrapped = notifier(MockComponent)
+  const Wrapped = notifier(MockComponent);
   const mockManager = {
     handleAction: jest.fn(),
     registerAnimatable: jest.fn(),
     deregisterAnimatable: jest.fn(),
     preTriggerUpdates: jest.fn(),
-    triggerUpdates: jest.fn()
-  }
+    triggerUpdates: jest.fn(),
+  };
 
   const wrapper = mount(
     <DynamicUiProvider manager={mockManager}>
       <Wrapped />
     </DynamicUiProvider>
-  )
-  expect(wrapper).toMatchSnapshot()
+  );
+  expect(wrapper).toMatchSnapshot();
 
-  const mockComponentProps = wrapper.find('MockComponent').props()
-  mockComponentProps.preTriggerDynamicUiUpdates('args')
-  expect(mockManager.preTriggerUpdates).toHaveBeenCalledWith('args')
-  mockComponentProps.triggerDynamicUiUpdates('args')
-  expect(mockManager.triggerUpdates).toHaveBeenCalledWith('args')
-})
+  const mockComponentProps = wrapper.find('MockComponent').props();
+  mockComponentProps.preTriggerDynamicUiUpdates('args');
+  expect(mockManager.preTriggerUpdates).toHaveBeenCalledWith('args');
+  mockComponentProps.triggerDynamicUiUpdates('args');
+  expect(mockManager.triggerUpdates).toHaveBeenCalledWith('args');
+});

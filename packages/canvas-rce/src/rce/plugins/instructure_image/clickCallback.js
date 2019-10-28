@@ -42,8 +42,7 @@ export default function(ed, document, trayProps) {
         panels={['COMPUTER', 'UNSPLASH', 'URL']}
         onDismiss={handleDismiss}
         trayProps={trayProps}
-      />,
-      container
+      />, container
     )
   })
 }
