@@ -30,10 +30,13 @@ require_relative '../lib/canvas_yaml'
 require "active_record/railtie"
 require "action_controller/railtie"
 require "action_mailer/railtie"
-# require "sprockets/railtie" # Do not enable the Rails Asset Pipeline
+require "sprockets/railtie" # Do not enable the Rails Asset Pipeline
 require "rails/test_unit/railtie"
 
 Bundler.require(*Rails.groups)
+
+require 'dotenv'
+Dotenv.load('.env.development')
 
 module CanvasRails
   class Application < Rails::Application

@@ -33,7 +33,7 @@ gem 'encrypted_cookie_store-instructure', '1.2.6', require: 'encrypted_cookie_st
 gem 'active_model_serializers',   '0.9.0alpha1',
   github: 'rails-api/active_model_serializers', ref: '61882e1e4127facfe92e49057aec71edbe981829'
 gem 'authlogic', '3.6.0'
-  gem 'scrypt', '3.0.5'
+  gem 'scrypt'
 gem 'active_model-better_errors', '1.6.7', require: 'active_model/better_errors'
 gem 'dynamic_form', '1.1.4', require: false
 gem 'rails-patch-json-encode', '0.0.1'
@@ -53,7 +53,7 @@ gem 'barby', '0.6.5', require: false
   gem 'rqrcode', '0.10.1', require: false
   gem 'chunky_png', '1.3.8', require: false
 gem 'bcrypt', '3.1.11'
-gem 'canvas_connect', '0.3.12'
+gem 'canvas_connect', '~> 0.3.11'
   gem 'adobe_connect', '1.0.6', require: false
 gem 'canvas_webex', '0.17'
 gem 'inst-jobs', '0.13.5'
@@ -159,3 +159,6 @@ gem 'twitter', path: 'gems/twitter'
 gem 'vericite_api', '1.5.1'
 gem 'utf8_cleaner', path: 'gems/utf8_cleaner'
 gem 'workflow', path: 'gems/workflow'
+
+gem 'canvas_shim', :path => 'vendor/canvas_shim'
+gem 'bootsnap', require: false

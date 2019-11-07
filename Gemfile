@@ -14,6 +14,9 @@ source 'https://rubygems.org/'
 
 require File.expand_path("../config/canvas_rails5", __FILE__)
 
+gem "sprockets-rails", "~> 3.2"
+gem "sprockets", "~> 3.2"
+
 Dir.glob(File.join(File.dirname(__FILE__), 'Gemfile.d', '*.rb')).sort.each do |file|
   eval(File.read(file), nil, file)
 end
