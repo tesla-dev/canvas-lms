@@ -19,6 +19,7 @@ create_apps.rb
 /.ruby-version
 /app/views/info/styleguide.html.erb
 /config/*.yml
+!/config/brandable_css.yml
 /config/environments/*-local.rb
 /config/locales/generated/
 /config/RAILS6_0
