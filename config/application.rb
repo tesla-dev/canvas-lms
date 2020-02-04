@@ -52,6 +52,15 @@ module CanvasRails
     config.action_controller.forgery_protection_origin_check = true
     ActiveSupport.to_time_preserves_timezone = true
 
+    if ENV["CORS_DOMAINS"]
+      config.middleware.insert_before 0, Rack::Cors do
+        allow do
+          origins(*ENV["CORS_DOMAINS"].split(','))
+          resource '*', headers: :any, methods: :any
+        end
+      end
+    end
+
     config.app_generators do |c|
       c.test_framework :rspec
       c.integration_tool :rspec

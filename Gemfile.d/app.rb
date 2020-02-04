@@ -24,6 +24,7 @@ else
 end
 
 gem 'rack', '2.0.7'
+gem 'rack-cors', '1.1.1'
 
 gem 'oauth2', '1.4.2', require: false
 
