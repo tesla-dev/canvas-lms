@@ -25,6 +25,6 @@ production:
   port: <%= ENV['DB_PORT'] %>
   encoding: utf8
   username: <%= ENV['DB_USER'] %>
-  database: <%= ENV['DB_NAME'] %>_production
+  database: <%= ENV['DB_NAME'] %>
   password: <%= ENV['DB_PASS'] %>
   timeout: 5000
