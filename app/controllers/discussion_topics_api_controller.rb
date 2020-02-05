@@ -220,7 +220,8 @@ class DiscussionTopicsApiController < ApplicationController
 
   def strongmind_flattened_replies
     return unless authorized_action(@topic, @current_user, :read_replies)
-    render :json => @topic.discussion_subentries.map {|de| [de].concat(de.flattened_discussion_subentries) }
+    result = @topic.discussion_subentries.map { |de| [de].concat(de.flattened_discussion_subentries) }.flatten
+    render :json => result
   end
 
   # @API Post an entry
