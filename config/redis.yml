@@ -1,3 +1,6 @@
 development:
   servers:
   - redis://localhost
+production:
+  servers:
+  - <%= ENV["REDIS_SERVER"] %>
